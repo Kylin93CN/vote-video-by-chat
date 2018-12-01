@@ -170,7 +170,16 @@ module.exports = {
       PnpWebpackPlugin.moduleLoader(module),
     ],
   },
+  eslint: {
+    configFile: `./.eslintrc`,
+    fix: true
+  },
   module: {
+    preLoaders: [{
+      test: /\.js|jsx$/,
+      exclude: [/node_modules/],
+      loader: 'eslint-loader'
+    }],
     strictExportPresence: true,
     rules: [
       // Disable require.ensure as it's not a standard language feature.

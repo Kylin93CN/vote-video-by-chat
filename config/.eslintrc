@@ -1,0 +1,51 @@
+{
+  "extends": "airbnb",
+  "env": {
+      "browser": true,
+      "node": true,
+      "mocha": true
+  },
+  "ecmaFeatures": {
+      "forOf": true,
+      "jsx": true,
+      "es6": true
+  },
+  "globals": {
+      "ENV": true,
+      "window": true,
+      "document": false
+  },
+  "rules": {
+      "object-curly-spacing": ["error", "always"],
+      "indent": ["error", 4, { "SwitchCase": 1 }],
+      "arrow-parens": ["error", "as-needed"],
+      "comma-dangle": ["error", {
+          "arrays": "never",
+          "objects": "always-multiline",
+          "imports": "always-multiline",
+          "exports": "always-multiline",
+          "functions": "never"
+      }],
+      "quote-props": ["error", "consistent"],
+      "no-use-before-define": ["error", { "functions": false }],
+      "no-restricted-syntax": [0],
+      "no-script-url": [0],
+      "no-nested-ternary": [0],
+      "no-param-reassign": ["error", { "props": false }],
+      "func-names": [0],
+      "no-useless-escape": [0],
+      "class-methods-use-this": [0],
+      "react/jsx-indent": [2, 4],
+      "react/jsx-indent-props": [2, 4],
+      "react/jsx-no-bind": [0],
+      "react/forbid-prop-types": [0],
+      "react/no-unused-prop-types": [2, { "skipShapeProps": true }],
+      "react/jsx-boolean-value": [0],
+      "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+      "jsx-a11y/anchor-has-content": [0],
+      "jsx-a11y/no-static-element-interactions": [0],
+      "max-len": ["error", { "code": 150, "ignoreRegExpLiterals": true }],
+      "no-bitwise": ["error", { "allow": ["~"] }],
+      "import/no-extraneous-dependencies": [2, {"devDependencies": true}]
+  }
+}
