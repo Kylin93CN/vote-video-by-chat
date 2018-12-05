@@ -17,11 +17,17 @@ export default class VideoPlayer extends Component {
     }
   }
 
+  onClick = () => {
+    this.player.src('http://lvxiang.site/public/dy001.mp4');
+    this.player.autoplay();
+  }
+
   render() {
     return (
       <div>
         <div data-vjs-player>
           <video ref={node => { this.videoNode = node; }} className="video-js" />
+          <button style={{ right: '30px', position: 'absolute' }} type="button" value="123" onClick={this.onClick}>adsadsadsad萨达所大所阿呆阿萨德</button>
         </div>
       </div>
     );
