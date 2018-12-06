@@ -13,9 +13,9 @@ export default class MainContainer extends Component {
   render() {
     return (
       <div className={styles.contaniner}>
-        <p className={styles.videoList}>1</p>
-        <p className={styles.videoPlay}>2</p>
-        <p className={styles.chatRoom}>3</p>
+        <div className={styles.videoList}>1</div>
+        <div className={styles.videoPlay}>2</div>
+        <div className={styles.chatRoom}>3</div>
       </div>
     );
   }
