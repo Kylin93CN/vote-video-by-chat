@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import styles from './MainContainer.scss';
+import styles from './MainContainer.module.scss';
 
 export default class MainContainer extends Component {
   constructor(props) {
@@ -12,8 +12,8 @@ export default class MainContainer extends Component {
 
   render() {
     return (
-      <div className="contaniner">
-        <p className="videoList">1</p>
+      <div className={styles.contaniner}>
+        <p className={styles.videoList}>1</p>
         <p className={styles.videoPlay}>2</p>
         <p className={styles.chatRoom}>3</p>
       </div>

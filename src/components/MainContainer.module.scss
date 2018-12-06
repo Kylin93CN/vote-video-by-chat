@@ -15,6 +15,7 @@ code {
 
 .contaniner {
   background-color: aqua;
+  height: 300px;
   .videoList {
     width: 15%;
     background-color: goldenrod;
@@ -26,5 +27,6 @@ code {
   .chatRoom {
     width: 15%;
     background-color: forestgreen;
+    color: red;
   }
 }
