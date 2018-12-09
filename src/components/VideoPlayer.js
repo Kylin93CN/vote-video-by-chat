@@ -18,8 +18,10 @@ export default class VideoPlayer extends Component {
   }
 
   onClick = () => {
-    this.player.src('http://lvxiang.site/public/dy001.mp4');
-    this.player.autoplay();
+    // setCurrentTime
+    this.player.currentTime(8);
+    // this.player.src('http://lvxiang.site/public/dy001.mp4');
+    this.player.play();
   }
 
   render() {
