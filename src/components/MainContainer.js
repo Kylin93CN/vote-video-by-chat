@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import styles from './MainContainer.module.scss';
 import VideoPlayer from './VideoPlayer';
 
-export default class MainContainer extends Component {
+class MainContainer extends Component {
   constructor(props) {
     super(props);
 
@@ -11,7 +12,24 @@ export default class MainContainer extends Component {
     };
   }
 
+  componentDidMount() {
+    const { dispatch } = this.props;
+    fetch('http://127.0.0.1:7001/ping')
+      .then(res => {
+        res.json();
+      })
+      .then(res => {
+        console.log(res);
+        dispatch({
+          type: 'AAAA',
+          payload: res,
+        });
+      });
+  }
+
   render() {
+    const { reducers } = this.props.reducers;
+    console.log(reducers);
     const videoJsOptions = {
       autoplay: 'muted',
       controls: true,
@@ -19,7 +37,6 @@ export default class MainContainer extends Component {
         src: 'http://lvxiang.site/public/dy003.mp4',
         type: 'video/mp4',
       }],
-      // currentTime: 5,
       height: '500px',
       width: '720px',
     };
@@ -35,3 +52,9 @@ export default class MainContainer extends Component {
     );
   }
 }
+
+const mapStateToProps = state => ({
+  reducers: state.movie,
+});
+
+export default connect(mapStateToProps)(MainContainer);
