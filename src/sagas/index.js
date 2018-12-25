@@ -1,9 +1,12 @@
-import { put, takeEvery } from 'redux-saga/effects';
+import { fork } from 'redux-saga/effects';
 
-export function* fetchProject() {
-  yield put({ type: 'BBBB', payload: 'XXXXX' });
-}
+// Use require.context to require sagas automatically
+// Ref: https://webpack.github.io/docs/context.html
+const context = require.context('./', false, /\.js$/);
+const keys = context.keys().filter(item => item !== './index.js' && item !== './SagaManager.js');
 
-export default function* rootSaga() {
-  yield takeEvery('AAAA', fetchProject);
+export default function* root() {
+  for (let i = 0; i < keys.length; i += 1) {
+    yield fork(context(keys[i]).default);
+  }
 }

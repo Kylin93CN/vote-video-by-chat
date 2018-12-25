@@ -2,9 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import createStore from './store/createStore';
-import './index.css';
-import MainContainer from './components/MainContainer';
+import MainContainer from './pages/MainContainer';
 import * as serviceWorker from './serviceWorker';
+import './index.css';
 
 const store = createStore();
 ReactDOM.render(
