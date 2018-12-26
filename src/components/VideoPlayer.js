@@ -23,6 +23,21 @@ export default class VideoPlayer extends Component {
   }
 
   render() {
+    const options = this.props;
+    const { player } = this;
+    if (player) {
+      if (options.movieUrl !== player.currentSrc()) {
+        player.src(options.movieUrl);
+      }
+      const diffTIme = player.currentTime() - options.currentTime;
+      if (Math.abs(diffTIme) > 10) {
+        player.currentTime(options.currentTime);
+      }
+      // 暂停状态时 不播放
+      if (!player.paused()) {
+        player.play();
+      }
+    }
     return (
       <div>
         <div data-vjs-player>
