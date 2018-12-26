@@ -293,7 +293,6 @@ module.exports = {
               customize: require.resolve(
                 'babel-preset-react-app/webpack-overrides'
               ),
-              
               plugins: [
                 [
                   require.resolve('babel-plugin-named-asset-import'),
@@ -303,8 +302,10 @@ module.exports = {
                         ReactComponent: '@svgr/webpack?-prettier,-svgo![path]',
                       },
                     },
-                  },
+                  }
                 ],
+                [require.resolve('babel-plugin-import'),
+                  { libraryName: 'antd', style: 'css' }]
               ],
               cacheDirectory: true,
               // Save disk space when time isn't as important

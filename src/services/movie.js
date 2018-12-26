@@ -1,8 +1,8 @@
-import httpUtil from './xFetch';
+import xFetch from './xFetch';
 
 const api = {
   async ping() {
-    return httpUtil.get('/ping');
+    return xFetch('/ping');
   },
 };
 

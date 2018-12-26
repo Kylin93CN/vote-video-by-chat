@@ -1,6 +1,7 @@
 import {
   call, fork, put, takeLatest,
 } from 'redux-saga/effects';
+import { message } from 'antd';
 import movie from '../services/movie';
 
 export default function* () {
@@ -14,9 +15,8 @@ function* watchGetPing() {
 function* fetchProject() {
   try {
     const result = yield call(movie.ping);
-    console.log('sagas', result);
     yield put({ type: 'UPDATE_PING', payload: result });
   } catch (err) {
-    console.log(err);
+    message.error(err);
   }
 }

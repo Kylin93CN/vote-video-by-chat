@@ -5,8 +5,13 @@ import 'video.js/dist/video-js.css';
 export default class VideoPlayer extends Component {
   componentDidMount() {
     // instantiate Video.js
-    this.player = videojs(this.videoNode, this.props, function onPlayerReady() {
+    const options = this.props;
+    if (!options.currentTime) {
+      return;
+    }
+    this.player = videojs(this.videoNode, options, function onPlayerReady() {
       console.log('onPlayerReady', this);
+      this.currentTime(options.currentTime);
     });
   }
 
@@ -17,19 +22,11 @@ export default class VideoPlayer extends Component {
     }
   }
 
-  onClick = () => {
-    // setCurrentTime
-    this.player.currentTime(8);
-    // this.player.src('http://lvxiang.site/public/dy001.mp4');
-    this.player.play();
-  }
-
   render() {
     return (
       <div>
         <div data-vjs-player>
           <video ref={node => { this.videoNode = node; }} className="video-js" />
-          <button style={{ right: '30px', position: 'absolute' }} type="button" value="123" onClick={this.onClick}>adsadsadsad萨达所大所阿呆阿萨德</button>
         </div>
       </div>
     );

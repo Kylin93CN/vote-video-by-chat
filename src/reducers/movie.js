@@ -7,7 +7,7 @@ const defaultState = {
 const movie = handleActions(
   {
     'UPDATE_PING': (state, action) => (
-      { ...state, pingInfo: action.result }
+      { ...state, pingInfo: action.payload }
     ),
   },
   defaultState

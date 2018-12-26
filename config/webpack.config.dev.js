@@ -218,7 +218,6 @@ module.exports = {
               customize: require.resolve(
                 'babel-preset-react-app/webpack-overrides'
               ),
-              
               plugins: [
                 [
                   require.resolve('babel-plugin-named-asset-import'),
@@ -228,8 +227,10 @@ module.exports = {
                         ReactComponent: '@svgr/webpack?-prettier,-svgo![path]',
                       },
                     },
-                  },
+                  }
                 ],
+                [require.resolve('babel-plugin-import'),
+                  { libraryName: 'antd', style: 'css' }]
               ],
               // This is a feature of `babel-loader` for webpack (not Babel itself).
               // It enables caching results in ./node_modules/.cache/babel-loader/
