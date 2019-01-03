@@ -19,19 +19,19 @@ code {
   height: 100vh;
   width: 100%;
   .header {
-    height: 5vh;
+    height: 35px;
     background-color: #240507;
   }
   .videoList {
     width: 15%;
     float: left;
-    height: 95vh;
+    height: 95%;
     background-color: #232323;
   }
   .videoPlay {
     width: 70%;
     float: left;
-    height: 95vh;
+    height: 95%;
     background-color: rgb(241, 247, 233);
     .video-js {
       width: 100% !important;
@@ -41,7 +41,7 @@ code {
   .chatRoom {
     width: 15%;
     background-color: rgb(141, 141, 141);
-    height: 95vh;
+    height: 95%;
     float: left;
   }
 }

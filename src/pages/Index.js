@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+
+import VideoList from '../components/VideoList';
 import styles from './Index.module.scss';
 import VideoPlayer from '../components/VideoPlayer';
 
@@ -25,23 +27,28 @@ class Index extends Component {
 
   render() {
     const { pingInfo } = this.props.movie;
+    const { liveMovie = {}, movieList = [] } = pingInfo;
     const videoJsOptions = {
       autoplay: 'muted',
       controls: true,
       sources: [{
-        src: pingInfo.movieUrl,
+        src: liveMovie.movieUrl - 1,
         type: 'video/mp4',
       }],
       height: '500px',
       width: '720px',
-      currentTime: pingInfo.currentTime,
+      currentTime: liveMovie.currentTime,
     };
     return (
       <div className={styles.contaniner}>
-        <div className={styles.header}>Header</div>
-        <div className={styles.videoList}>1</div>
+        <div className={styles.header}>
+          Header
+        </div>
+        <div className={styles.videoList}>
+          <VideoList movieList={movieList} />
+        </div>
         <div className={styles.videoPlay}>
-          {pingInfo.movieUrl ? <VideoPlayer {...videoJsOptions} /> : null}
+          {liveMovie.movieUrl ? <VideoPlayer {...videoJsOptions} /> : null}
         </div>
         <div className={styles.chatRoom}>3</div>
       </div>

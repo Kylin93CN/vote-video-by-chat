@@ -1,0 +1,30 @@
+
+.videoList {
+  .addScoreBtn {
+    height: 21px;
+    padding-top: 3px;
+    margin-top: 3px;
+  }
+  .movieName {
+    width: 100%;
+  }
+  
+  :global {
+    .ant-list-item-content-single {
+      flex-direction: column;
+    }
+  }
+}
+
+.addScorePanel {
+  width: 170px;
+  .input {
+    width: 100px;
+    margin-left: 15px;
+    height: 21px;
+  }
+  :global {
+    
+  }
+
+}
