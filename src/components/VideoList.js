@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {
-  List, Button, Popover, Radio, Input,
+  List, Button, Popover, Radio, Input, message,
 } from 'antd';
 
 import styles from './VideoList.module.scss';
@@ -11,7 +11,8 @@ export default class VideoList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: 100,
+      optionValue: 100,
+      value: -1,
     };
   }
 
@@ -21,23 +22,51 @@ export default class VideoList extends Component {
 
   renderContent = id => {
     console.log(id);
+    const { optionValue } = this.state;
     return (
       <div className={styles.addScorePanel}>
-        <RadioGroup onChange={this.onChange} value={this.state.value}>
+        <RadioGroup onChange={this.onChangeOption} value={optionValue}>
           <Radio value={100}>100</Radio>
           <Radio value={200}>200</Radio>
           <Radio value={500}>500</Radio>
           <Radio value={1000}>1000</Radio>
           <Radio value={-1}>
             其它
-            {this.state.value === -1 ? <Input className={styles.input} placeholder="100的倍数" /> : null}
+            {optionValue === -1 ? <Input className={styles.input} placeholder="100的倍数" onChange={this.setScoreValue} /> : null}
           </Radio>
         </RadioGroup>
         <div>
-          <Button style={{ margin: 'auto', display: 'block', marginTop: '5px' }} type="primary">加分</Button>
+          <Button className={styles.addScoreBtn} type="primary" onClick={() => this.addScore(id)}>加分</Button>
         </div>
       </div>
     );
+  }
+
+  addScore = id => {
+    const { value, optionValue } = this.state;
+    if (!Number.isInteger(value / 100)) {
+      message.error('分数必须为100的倍数！');
+      return;
+    }
+    let score = 0;
+    if (optionValue === -1) {
+      score = value;
+    } else {
+      score = optionValue;
+    }
+    const obj = { id, score };
+    const { dispatch } = this.props;
+    dispatch({
+      type: 'ADD_SCORE',
+      payload: obj,
+    });
+  }
+
+  setScoreValue = e => {
+    const { value } = e.target;
+    this.setState({
+      value,
+    });
   }
 
   renderItem = item => {
@@ -55,10 +84,9 @@ export default class VideoList extends Component {
     );
   }
 
-  onChange = e => {
-    console.log('radio checked', e.target.value);
+  onChangeOption = e => {
     this.setState({
-      value: e.target.value,
+      optionValue: e.target.value,
     });
   }
 
@@ -85,4 +113,5 @@ export default class VideoList extends Component {
 
 VideoList.propTypes = {
   movieList: PropTypes.array.isRequired,
+  dispatch: PropTypes.func.isRequired,
 };

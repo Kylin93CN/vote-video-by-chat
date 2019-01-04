@@ -28,6 +28,7 @@ class Index extends Component {
   render() {
     const { pingInfo } = this.props.movie;
     const { liveMovie = {}, movieList = [] } = pingInfo;
+    const { dispatch } = this.props;
     const videoJsOptions = {
       autoplay: 'muted',
       controls: true,
@@ -45,7 +46,7 @@ class Index extends Component {
           Header
         </div>
         <div className={styles.videoList}>
-          <VideoList movieList={movieList} />
+          <VideoList movieList={movieList} dispatch={dispatch} />
         </div>
         <div className={styles.videoPlay}>
           {liveMovie.movieUrl ? <VideoPlayer {...videoJsOptions} /> : null}
