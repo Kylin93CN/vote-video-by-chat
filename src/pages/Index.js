@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
+import socket from 'socket.io-client';
 import VideoList from '../components/VideoList';
 import styles from './Index.module.scss';
 import VideoPlayer from '../components/VideoPlayer';
@@ -23,6 +24,16 @@ class Index extends Component {
         type: 'GET_PING',
       });
     }, 3000);
+    const mySocket = socket('http://localhost:7001/chat');
+
+    mySocket.on('connect', () => {
+      console.log('connect!');
+      mySocket.emit('chat', 'hello world!');
+    });
+
+    mySocket.on('res', msg => {
+      console.log('res from server: %s!', msg);
+    });
   }
 
   render() {
