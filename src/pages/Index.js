@@ -2,10 +2,12 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import socket from 'socket.io-client';
+import { Input } from 'antd';
+
 import VideoList from '../components/VideoList';
-import styles from './Index.module.scss';
+import ChatRoom from '../components/ChatRoom';
 import VideoPlayer from '../components/VideoPlayer';
+import styles from './Index.module.scss';
 
 class Index extends Component {
   constructor(props) {
@@ -24,22 +26,15 @@ class Index extends Component {
         type: 'GET_PING',
       });
     }, 3000);
-    const mySocket = socket('http://localhost:7001/chat');
-
-    mySocket.on('connect', () => {
-      console.log('connect!');
-      mySocket.emit('chat', 'hello world!');
-    });
-
-    mySocket.on('res', msg => {
-      console.log('res from server: %s!', msg);
-    });
   }
 
   render() {
-    const { pingInfo } = this.props.movie;
+    const { pingInfo = {} } = this.props.movie;
     const { liveMovie = {}, movieList = [] } = pingInfo;
     const { dispatch } = this.props;
+    // const xx = window.navigator.userAgent;
+    liveMovie.movieUrl = '123';
+    liveMovie.currentTime = '123';
     const videoJsOptions = {
       autoplay: 'muted',
       controls: true,
@@ -52,17 +47,22 @@ class Index extends Component {
       currentTime: liveMovie.currentTime,
     };
     return (
-      <div className={styles.contaniner}>
+      <div>
+        <Input value="http://play.yunxi.tv/livestream/flash?id=223de80f3d9a4f8b98ddf81bd044b9ac" />
         <div className={styles.header}>
           Header
         </div>
-        <div className={styles.videoList}>
-          <VideoList movieList={movieList} dispatch={dispatch} />
+        <div className={styles.contaniner}>
+          <div className={styles.videoList}>
+            <VideoList movieList={movieList} dispatch={dispatch} />
+          </div>
+          <div className={styles.videoPlay}>
+            {liveMovie.movieUrl ? <VideoPlayer {...videoJsOptions} /> : null}
+          </div>
+          <div className={styles.chatRoom}>
+            <ChatRoom />
+          </div>
         </div>
-        <div className={styles.videoPlay}>
-          {liveMovie.movieUrl ? <VideoPlayer {...videoJsOptions} /> : null}
-        </div>
-        <div className={styles.chatRoom}>3</div>
       </div>
     );
   }

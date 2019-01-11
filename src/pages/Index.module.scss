@@ -15,22 +15,22 @@ code {
     monospace;
 }
 
+.header {
+  height: 35px;
+  background-color: #240507;
+}
+
 .contaniner {
   height: 100vh;
   width: 100%;
-  .header {
-    height: 35px;
-    background-color: #240507;
-  }
+  display: flex;
   .videoList {
-    width: 15%;
-    float: left;
+    width: 300px;
     height: 95%;
     background-color: #232323;
   }
   .videoPlay {
-    width: 70%;
-    float: left;
+    flex: 1;
     height: 95%;
     background-color: rgb(241, 247, 233);
     .video-js {
@@ -39,9 +39,8 @@ code {
     }
   }
   .chatRoom {
-    width: 15%;
+    width: 300px;
     background-color: rgb(141, 141, 141);
     height: 95%;
-    float: left;
   }
 }
